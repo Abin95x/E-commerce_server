@@ -1,10 +1,11 @@
 import  hashPassword  from "../utils/hashPassword.js";
-import User from '../models/userModel.js'
+import {User} from '../models/userModel.js'
 
 export const signup = async (req,res) => {
     try{
         const {name,email,password} = req.body
         const exist = await User.findOne({ email: email })
+
         if(!exist){
             const hashedPassword = await hashPassword(password)
             const user = new User({
@@ -13,7 +14,7 @@ export const signup = async (req,res) => {
                 password: hashedPassword,
                 
             })
-            const userData = await user.save()
+            await user.save()
 
             res.status(200).json({ message: "Signup successful" });
         }else{
