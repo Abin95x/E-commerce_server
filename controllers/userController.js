@@ -15,7 +15,6 @@ export const signup = async (req, res) => {
         }
 
         const exist = await User.findOne({ email: email })
-        console.log(exist);
         if (!exist) {
             const hashedPassword = await hashPassword(password)
             const user = new User({
@@ -30,7 +29,7 @@ export const signup = async (req, res) => {
                 process.env.SECRET_KEY_USER,
                 { expiresIn: "1h" })
             res.header('usertoken', usertoken);
-            res.status(200).json({ message: "Signup successful" });
+            res.status(200).json({ message: "Signup successful",usertoken });
         } else {
             res.status(409).json({ message: 'User already registered with this email' })
         }
@@ -58,7 +57,7 @@ export const login = async (req, res) => {
                     process.env.SECRET_KEY_USER,
                     { expiresIn: "1h" })
                 res.header('usertoken', usertoken);
-                res.status(200).json({ userData: exist, usertoken, message: `Welome ${exist.name}` });
+                res.status(200).json({ usertoken, message: `Welome ${exist.name}` });
             } else {
                 res.status(401).json({
                     message: "Password is incorrect"
