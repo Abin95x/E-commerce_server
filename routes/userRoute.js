@@ -1,10 +1,9 @@
 import express from 'express'
-const route = express()
+const userRoute = express()
 import sanitizeInput from '../middlewares/sanitization.js'
-// import { auth } from '../middlewares/auth.js'
 import { signup, login } from '../controllers/userController.js'
 
-route.post('/signup', sanitizeInput, signup)
-route.post('/login', sanitizeInput, login)
+userRoute.post('/signup', sanitizeInput, signup)
+userRoute.post('/login', sanitizeInput, login)
 
-export default route
+export default userRoute

@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
             res.header('usertoken', usertoken);
             res.status(200).json({ message: "Signup successful" });
         } else {
-            res.status(409).json({ message: 'Conflict user already registered with this email' })
+            res.status(409).json({ message: 'User already registered with this email' })
         }
 
     } catch (error) {

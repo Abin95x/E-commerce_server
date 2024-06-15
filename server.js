@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import userRoute from './routes/userRoute.js'
+import categoryRoute from './routes/categoryRoute.js'
 import { dbconnect } from './config/dbConfig.js'
 
 const app = express()
@@ -15,6 +16,7 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use('/',userRoute)
+app.use('/category',categoryRoute)
 
 dbconnect()
 
