@@ -48,7 +48,6 @@ export const addSubCategory = async (req, res) => {
         if (!categoryData) {
             return res.status(404).json({ message: 'Category not found.' });
         }
-        console.log(categoryData);
 
         if (categoryData.subcategories.includes(subCategory)) {
             return res.status(400).json({ message: 'Sub category already exists in this category.' });
@@ -70,9 +69,6 @@ export const addSubCategory = async (req, res) => {
 export const getOneCategory = async (req, res) => {
     try {
         const { id } = req.query
-        console.log(id
-            
-        );
         const category = await Category.findById(id);
         const subcategories = category.subcategories
         res.status(200).json({ message: 'Sub category.', subcategories: subcategories });
