@@ -9,6 +9,11 @@ dotenv.config();
 export const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body
+
+        if (!name || !email || !password) {
+            return res.status(400).json({ message: 'Name, Email, password are required.' });
+        }
+
         const exist = await User.findOne({ email: email })
         console.log(exist);
         if (!exist) {
@@ -40,8 +45,11 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body
-        console.log(email);
-        console.log(password);
+
+        if (!email || !password) {
+            return res.status(400).json({ message: 'email and password are required.' });
+        }
+        
         const exist = await User.findOne({ email: email })
         if (exist) {
             const passCheck = await bcrypt.compare(password, exist.password)
