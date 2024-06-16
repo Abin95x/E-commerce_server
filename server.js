@@ -4,13 +4,16 @@ import userRoute from './routes/userRoute.js'
 import categoryRoute from './routes/categoryRoute.js'
 import productRoute from './routes/productRoute.js'
 import { dbconnect } from './config/dbConfig.js'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express()
 
 const PORT = process.env.PORT || 3000
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONT_END_URL,
     methods: ['GET','POST','PUT','PATCH'],
     credentials: true,
 }))

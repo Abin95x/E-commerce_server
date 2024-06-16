@@ -9,17 +9,17 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    partno: {
+    price: {
         type: String,
-        required: true, unique: true
+        required: true,
     },
     category: {
         type: String,
-        required: true
+        
     },
     subcategory: {
         type: String,
-        required: true
+        
     },
     description: {
         type: String
