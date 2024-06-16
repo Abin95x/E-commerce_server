@@ -12,7 +12,8 @@ export const addCategory = async (req, res) => {
                 name: categoryName
             })
             await category.save()
-            res.status(200).json({ message: "Category successfully added" });
+            const categories = await Category.find()
+            return res.status(200).json({ message: "Category successfully added", data: categories })
 
         } else {
             res.status(409).json({ message: 'Category already exist' })
