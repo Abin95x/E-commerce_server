@@ -7,7 +7,7 @@ import {
     addSubCategory,
     getCategory,
     getOneCategory
-} from '../controllers/categoryContoller.js'
+} from '../controllers/categoryController.js'
 
 
 categoryRoute.post('/add-category', sanitizeInput, auth, addCategory)
